@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
+import '../../settings/settings_screen.dart';
 
 class SalesHeader extends StatelessWidget {
-  final VoidCallback? onMenuTap;
-  const SalesHeader({super.key, this.onMenuTap});
+  const SalesHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class SalesHeader extends StatelessWidget {
           const SizedBox(width: 40),
           const Text('Ventas', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold)),
           GestureDetector(
-            onTap: onMenuTap,
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SettingsScreen())),
             child: const Icon(Icons.more_vert, color: Colors.white, size: 28),
           ),
         ],

@@ -18,28 +18,9 @@ class ChessCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 56, height: 56,
-              decoration: BoxDecoration(color: const Color(0xFF4CAF50).withValues(alpha: 0.2), borderRadius: BorderRadius.circular(16)),
-              child: const Icon(Icons.sports_esports, color: Color(0xFF4CAF50), size: 30),
-            ),
+            Container(width: 56, height: 56, decoration: BoxDecoration(color: const Color(0xFF4CAF50).withOpacity(0.2), borderRadius: BorderRadius.circular(16)), child: const Icon(Icons.sports_esports, color: Color(0xFF4CAF50), size: 30)),
             const SizedBox(width: 16),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Entrena tu mente', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 4),
-                  Text('Juega partidas rápidas de ajedrez mientras descansas de la lectura.', style: TextStyle(color: Colors.grey, fontSize: 13)),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(color: const Color(0xFF4CAF50), borderRadius: BorderRadius.circular(16)),
-              child: const Text('Jugar', style: TextStyle(color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold)),
-            ),
+            const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Entrena tu mente', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)), SizedBox(height: 4), Text('Juega partidas rapidas de ajedrez', style: TextStyle(color: Colors.grey, fontSize: 13))])),
           ],
         ),
       ),

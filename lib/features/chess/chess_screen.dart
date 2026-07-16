@@ -4,6 +4,7 @@ import 'engine/move_analyzer.dart';
 import 'widgets/chess_board.dart';
 import 'widgets/chess_controls.dart';
 import 'widgets/difficulty_selector.dart';
+import 'chess_opponent_screen.dart';
 
 class ChessScreen extends StatefulWidget {
   const ChessScreen({super.key});
@@ -17,11 +18,9 @@ class _ChessScreenState extends State<ChessScreen> {
   int? _selectedCol;
   List<List<int>> _legalMoves = [];
   bool _gameStarted = false;
-  int _difficulty = 1;
   bool _isPlayerTurn = true;
   int _evaluation = 0;
   String _moveComment = '';
-  List<String> _analysisHistory = [];
 
   void _onSquareTap(int row, int col) {
     if (_engine.gameOver || !_isPlayerTurn) return;
@@ -33,7 +32,6 @@ class _ChessScreenState extends State<ChessScreen> {
         setState(() {
           _engine.makeMove(fromRow, fromCol, row, col);
           _moveComment = analysis;
-          _analysisHistory.add(analysis);
           _selectedRow = null;
           _selectedCol = null;
           _legalMoves = [];
@@ -68,19 +66,15 @@ class _ChessScreenState extends State<ChessScreen> {
             String? piece = _engine.board[r][c];
             if (piece != null && !_engine.isWhitePiece(piece)) {
               List<List<int>> moves = _engine.getLegalMoves(r, c);
-              for (var move in moves) {
-                allMoves.add([r, c, move[0], move[1]]);
-              }
+              for (var move in moves) allMoves.add([r, c, move[0], move[1]]);
             }
           }
         }
         if (allMoves.isNotEmpty) {
           allMoves.shuffle();
           var move = allMoves.first;
-          String aiAnalysis = MoveAnalyzer.analyzeMove(_engine, move[0], move[1], move[2], move[3]);
           _engine.makeMove(move[0], move[1], move[2], move[3]);
-          _moveComment = 'IA: $aiAnalysis';
-          _analysisHistory.add('IA: $aiAnalysis');
+          _moveComment = 'IA movio';
         }
         _isPlayerTurn = true;
         _evaluation = _engine.evaluatePosition();
@@ -90,7 +84,6 @@ class _ChessScreenState extends State<ChessScreen> {
 
   void _startGame(int difficulty) {
     setState(() {
-      _difficulty = difficulty;
       _gameStarted = true;
       _engine.reset();
       _isPlayerTurn = true;
@@ -98,28 +91,7 @@ class _ChessScreenState extends State<ChessScreen> {
       _selectedCol = null;
       _legalMoves = [];
       _evaluation = 0;
-      _moveComment = '¡Comienza la partida! Juegas con blancas ♔';
-      _analysisHistory = [];
-    });
-  }
-
-  void _newGame() {
-    setState(() {
-      _engine.reset();
-      _isPlayerTurn = true;
-      _selectedRow = null;
-      _selectedCol = null;
-      _legalMoves = [];
-      _evaluation = 0;
-      _moveComment = '¡Nueva partida! Juegas con blancas ♔';
-      _analysisHistory = [];
-    });
-  }
-
-  void _resign() {
-    setState(() {
-      _engine.gameOver = true;
-      _engine.gameStatus = 'Te has rendido. Ganaron las negras.';
+      _moveComment = 'Juegas con blancas';
     });
   }
 
@@ -128,7 +100,27 @@ class _ChessScreenState extends State<ChessScreen> {
     if (!_gameStarted) {
       return Scaffold(
         backgroundColor: const Color(0xFF0D0D0D),
-        body: SafeArea(child: Center(child: SingleChildScrollView(child: DifficultySelector(onSelect: _startGame)))),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                DifficultySelector(onSelect: _startGame),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ChessOpponentScreen())),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(color: const Color(0xFFD7A15D), borderRadius: BorderRadius.circular(16)),
+                      child: const Center(child: Text('Jugar contra un amigo', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold))),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+              ],
+            ),
+          ),
+        ),
       );
     }
     return Scaffold(
@@ -137,32 +129,17 @@ class _ChessScreenState extends State<ChessScreen> {
         child: Column(
           children: [
             const SizedBox(height: 8),
-            const Text('♟ AJEDREZ - MODO ENTRENADOR', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1)),
+            const Text('AJEDREZ - MODO ENTRENADOR', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             ChessBoard(engine: _engine, selectedRow: _selectedRow, selectedCol: _selectedCol, legalMoves: _legalMoves, isPlayerTurn: _isPlayerTurn, onSquareTap: _onSquareTap),
             const SizedBox(height: 8),
-            // Panel de análisis
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1A1A2E),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF3A3A5E), width: 0.5),
-              ),
-              constraints: const BoxConstraints(maxHeight: 80),
-              child: SingleChildScrollView(
-                child: Text(
-                  _moveComment,
-                  style: TextStyle(
-                    color: _moveComment.contains('✅') ? const Color(0xFF4CAF50) : _moveComment.contains('⚠️') ? const Color(0xFFFFA726) : Colors.white,
-                    fontSize: 13,
-                  ),
-                ),
-              ),
+              decoration: BoxDecoration(color: const Color(0xFF1A1A2E), borderRadius: BorderRadius.circular(12)),
+              child: Text(_moveComment, style: TextStyle(color: _moveComment.contains('✅') ? const Color(0xFF4CAF50) : Colors.white, fontSize: 13)),
             ),
-            const SizedBox(height: 4),
-            ChessControls(isPlayerTurn: _isPlayerTurn, gameStatus: _engine.gameStatus, evaluation: _evaluation, onUndo: () {}, onResign: _resign, onNewGame: _newGame),
+            ChessControls(isPlayerTurn: _isPlayerTurn, gameStatus: _engine.gameStatus, evaluation: _evaluation, onResign: () => setState(() { _engine.gameOver = true; _engine.gameStatus = 'Te has rendido'; }), onNewGame: () => _startGame(1)),
           ],
         ),
       ),
