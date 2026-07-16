@@ -1,0 +1,20 @@
+﻿# Flutter
+.dart_tool/
+.packages
+build/
+*.apk
+*.aab
+*.iml
+.idea/
+.vscode/
+.metadata
+.flutter-plugins*
+pubspec.lock
+
+# Firebase
+.firebase/
+google-services.json
+GoogleService-Info.plist
+*.jks
+*.keystore
+.firebase/

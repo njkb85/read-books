@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "read-libros",
+          "appId": "1:816015672655:android:5adea204c0db5ca73f713a",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "read-libros",
+          "configurations": {
+            "android": "1:816015672655:android:5adea204c0db5ca73f713a",
+            "ios": "1:816015672655:ios:09e651061fd05d7a3f713a",
+            "macos": "1:816015672655:ios:09e651061fd05d7a3f713a",
+            "web": "1:816015672655:web:ef1d23982b58c4843f713a",
+            "windows": "1:816015672655:web:371b55284033a3b63f713a"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
