@@ -1,8 +1,8 @@
-ï»¿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class AppColors {
   // Fondo principal
-  static const Color background = Color(0xFF0D0D0D);
+  static const Color background = Color(0xFF0F0F0F);
   
   // Superficies
   static const Color surface = Color(0xFF181818);
@@ -25,12 +25,12 @@ class AppColors {
   static const Color warning = Color(0xFFFFA726);
   static const Color info = Color(0xFF42A5F5);
   
-  // NavegaciÃ³n
+  // Navegación
   static const Color navActive = Color(0xFFD7A15D);
   static const Color navInactive = Color(0xFF757575);
   static const Color navBackground = Color(0xFF1A1A2E);
   
-  // BÃºsqueda
+  // Búsqueda
   static const Color searchBackground = Color(0xFF1B1B1B);
   
   // Bordes

@@ -35,3 +35,10 @@
   static const double searchBarHeight = 52.0;
   static const double bottomBarHeight = 65.0;
 }
+
+  // Radios estándar
+  static const double radiusCard = 16.0;
+  static const double radiusButton = 16.0;
+  static const double radiusInput = 12.0;
+  static const double radiusChip = 20.0;
+  static const double radiusBottomBar = 28.0;

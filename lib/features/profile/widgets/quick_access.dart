@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class QuickAccess extends StatelessWidget {
   const QuickAccess({super.key});
@@ -27,7 +27,7 @@ class QuickAccess extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             itemCount: items.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, _) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: items[index].onTap,
@@ -59,5 +59,5 @@ class _QuickItem {
   final String icon;
   final String label;
   final VoidCallback? onTap;
-  const _QuickItem({required this.icon, required this.label, this.onTap});
+  const _QuickItem({required this.icon, required this.label}) : onTap = null;
 }

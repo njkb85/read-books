@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'services/multiplayer_service.dart';
 
 class MultiplayerChessScreen extends StatefulWidget {
@@ -22,8 +22,11 @@ class _MultiplayerChessScreenState extends State<MultiplayerChessScreen> {
       setState(() {
         _board = (data['board'] as List).map((row) => (row as List).map((e) => e as String?).toList()).toList();
         _turn = data['turn'] ?? 'white';
-        if (!widget.service.isMyTurn(_turn)) _status = 'Turno del oponente';
-        else _status = 'Tu turno';
+        if (!widget.service.isMyTurn(_turn)) {
+          _status = 'Turno del oponente';
+        } else {
+          _status = 'Tu turno';
+        }
       });
     });
   }

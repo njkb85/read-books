@@ -1,6 +1,5 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import '../data/reel_model.dart';
 
 class ReelRightActions extends StatefulWidget {
   final int likes;
@@ -39,8 +38,8 @@ class _ReelRightActionsState extends State<ReelRightActions> {
       GestureDetector(
         onTap: () { setState(() => _isLiked = !_isLiked); widget.onLike?.call(_isLiked); },
         child: Column(children: [
-          Container(width: 44, height: 44, decoration: BoxDecoration(color: Colors.black.withOpacity(0.4), shape: BoxShape.circle), child: Icon(_isLiked ? Icons.favorite : Icons.favorite_outline, color: _isLiked ? const Color(0xFFC96A2B) : Colors.white, size: 24)),
-          const SizedBox(height: 4), Text(_format(widget.likes), style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 11)),
+          Container(width: 44, height: 44, decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.4), shape: BoxShape.circle), child: Icon(_isLiked ? Icons.favorite : Icons.favorite_outline, color: _isLiked ? const Color(0xFFC96A2B) : Colors.white, size: 24)),
+          const SizedBox(height: 4), Text(_format(widget.likes), style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 11)),
         ]),
       ),
       const SizedBox(height: 20),
@@ -54,8 +53,8 @@ class _ReelRightActionsState extends State<ReelRightActions> {
 
   Widget _btn(IconData icon, String label) {
     return Column(children: [
-      Container(width: 44, height: 44, decoration: BoxDecoration(color: Colors.black.withOpacity(0.4), shape: BoxShape.circle), child: Icon(icon, color: Colors.white, size: 24)),
-      const SizedBox(height: 4), Text(label, style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 11, fontWeight: FontWeight.w500)),
+      Container(width: 44, height: 44, decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.4), shape: BoxShape.circle), child: Icon(icon, color: Colors.white, size: 24)),
+      const SizedBox(height: 4), Text(label, style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 11, fontWeight: FontWeight.w500)),
     ]);
   }
 

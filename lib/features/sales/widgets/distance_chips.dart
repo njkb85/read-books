@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class DistanceChips extends StatefulWidget {
   const DistanceChips({super.key});
@@ -18,7 +18,7 @@ class _DistanceChipsState extends State<DistanceChips> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         itemCount: _chips.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, i) {
           final isActive = _selected == i;
           return GestureDetector(

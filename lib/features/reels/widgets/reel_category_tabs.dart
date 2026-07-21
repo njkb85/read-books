@@ -1,25 +1,20 @@
 ﻿import 'package:flutter/material.dart';
 
 class ReelCategoryTabs extends StatefulWidget {
-  final Function(int)? onCategoryChanged;
-
-  const ReelCategoryTabs({
-    super.key,
-    this.onCategoryChanged,
-  });
-
+  final Function(String)? onCategoryChanged;
+  const ReelCategoryTabs({super.key, this.onCategoryChanged});
   @override
   State<ReelCategoryTabs> createState() => _ReelCategoryTabsState();
 }
 
 class _ReelCategoryTabsState extends State<ReelCategoryTabs> {
   int _selectedIndex = 0;
-
   final List<String> _categories = [
-    'Leídos',
+    'Vistos',
+    'Sugeridos',
+    'Seguidos',
+    'Mios',
     'IA',
-    'Más leídos',
-    'Favoritos',
     'Historial',
   ];
 
@@ -35,18 +30,14 @@ class _ReelCategoryTabsState extends State<ReelCategoryTabs> {
           final isSelected = _selectedIndex == index;
           return GestureDetector(
             onTap: () {
-              setState(() {
-                _selectedIndex = index;
-              });
-              widget.onCategoryChanged?.call(index);
+              setState(() => _selectedIndex = index);
+              widget.onCategoryChanged?.call(_categories[index]);
             },
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 4),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color(0xFFC96A2B)
-                    : const Color(0xFF2A2A2A),
+                color: isSelected ? const Color(0xFFC96A2B) : const Color(0xFF2A2A2A),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(

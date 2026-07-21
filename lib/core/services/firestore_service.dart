@@ -1,4 +1,4 @@
-﻿import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
@@ -50,7 +50,7 @@ class FirestoreService {
   Future<Map<String, dynamic>?> getUserByUsername(String username) async {
     final query = await _firestore.collection('users').where('username', isEqualTo: username).limit(1).get();
     if (query.docs.isNotEmpty) {
-      return {'id': query.docs.first.id, ...query.docs.first.data() as Map<String, dynamic>};
+      return {'id': query.docs.first.id, ...query.docs.first.data()};
     }
     return null;
   }
@@ -65,7 +65,7 @@ class FirestoreService {
         .where('name', isGreaterThanOrEqualTo: query)
         .where('name', isLessThanOrEqualTo: '$query\uf8ff')
         .get();
-    return snapshot.docs.map((doc) => {'id': doc.id, ...doc.data() as Map<String, dynamic>}).toList();
+    return snapshot.docs.map((doc) => {'id': doc.id, ...doc.data()}).toList();
   }
 
   Stream<QuerySnapshot> getBooksForSale() => _firestore.collection('books').orderBy('createdAt', descending: true).snapshots();

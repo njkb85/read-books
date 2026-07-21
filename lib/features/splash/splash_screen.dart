@@ -38,16 +38,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             opacity: _fadeAnimation,
             child: ScaleTransition(
               scale: _scaleAnimation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const ReadLogo(size: 140),
-                  const SizedBox(height: 24),
-                  const Text('READ', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 8)),
-                  const SizedBox(height: 4),
-                  Text('Tu mundo de historias', style: TextStyle(color: Colors.grey[500], fontSize: 14, letterSpacing: 2)),
-                ],
-              ),
+              child: const ReadLogo(size: 140),
             ),
           ),
         ),

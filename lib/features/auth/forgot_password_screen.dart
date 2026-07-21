@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import 'widgets/auth_text_field.dart';
 import '../../core/services/auth_service.dart';
@@ -59,7 +59,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 if (_message != null) ...[Container(
                   margin: const EdgeInsets.only(bottom: 16),
                   padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(color: _sent ? const Color(0xFF1B5E20).withOpacity(0.3) : const Color(0xFFB71C1C).withOpacity(0.3), borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(color: _sent ? const Color(0xFF1B5E20).withValues(alpha: 0.3) : const Color(0xFFB71C1C).withValues(alpha: 0.3), borderRadius: BorderRadius.circular(12)),
                   child: Text(_message!, style: const TextStyle(color: Colors.white, fontSize: 13)),
                 )],
                 if (!_sent) GestureDetector(

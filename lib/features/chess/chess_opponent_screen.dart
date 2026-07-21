@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'chess_lobby_screen.dart';
@@ -34,7 +34,7 @@ class ChessOpponentScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final data = users[index].data() as Map<String, dynamic>;
                     return ListTile(
-                      leading: Container(width: 40, height: 40, decoration: BoxDecoration(shape: BoxShape.circle, color: const Color(0xFFD7A15D).withOpacity(0.2)), child: Center(child: Text((data['name'] ?? '?')[0].toUpperCase(), style: const TextStyle(color: Color(0xFFD7A15D), fontWeight: FontWeight.bold)))),
+                      leading: Container(width: 40, height: 40, decoration: BoxDecoration(shape: BoxShape.circle, color: const Color(0xFFD7A15D).withValues(alpha: 0.2)), child: Center(child: Text((data['name'] ?? '?')[0].toUpperCase(), style: const TextStyle(color: Color(0xFFD7A15D), fontWeight: FontWeight.bold)))),
                       title: Text(data['name'] ?? 'Usuario', style: const TextStyle(color: Colors.white)),
                       trailing: ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ChessLobbyScreen())), style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFD7A15D)), child: const Text('Retar', style: TextStyle(color: Colors.black))),
                     );

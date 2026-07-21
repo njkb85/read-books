@@ -1,14 +1,22 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class CategoryChips extends StatefulWidget {
-  const CategoryChips({super.key});
+  final Function(String)? onCategoryChanged;
+  const CategoryChips({super.key, this.onCategoryChanged});
   @override
   State<CategoryChips> createState() => _CategoryChipsState();
 }
 
 class _CategoryChipsState extends State<CategoryChips> {
   int _selected = 1;
-  static const _categories = ['Siguiendo', 'Sugeridos', 'Mas leidos', 'Leidos recientemente', 'Autores', 'Editoriales'];
+  static const _categories = [
+    'Siguiendo',
+    'Sugeridos',
+    'Mas leidos',
+    'Leidos recientemente',
+    'Autores',
+    'Editoriales',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +26,14 @@ class _CategoryChipsState extends State<CategoryChips> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: _categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, i) {
           final isActive = _selected == i;
           return GestureDetector(
-            onTap: () => setState(() => _selected = i),
+            onTap: () {
+              setState(() => _selected = i);
+              widget.onCategoryChanged?.call(_categories[i]);
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

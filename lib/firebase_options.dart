@@ -41,11 +41,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAm0tjcr_p2CUL18cgMjGom1wkV3fADBAc',
+    apiKey: 'AIzaSyCi-CbdkFZlmqP1oOp9wDc5_g0IqRE1Z_8',
     appId: '1:816015672655:web:ef1d23982b58c4843f713a',
     messagingSenderId: '816015672655',
     projectId: 'read-libros',
     authDomain: 'read-libros.firebaseapp.com',
+    databaseURL: 'https://read-libros-default-rtdb.firebaseio.com',
     storageBucket: 'read-libros.firebasestorage.app',
     measurementId: 'G-2B9R7L4VVB',
   );
@@ -55,33 +56,37 @@ class DefaultFirebaseOptions {
     appId: '1:816015672655:android:5adea204c0db5ca73f713a',
     messagingSenderId: '816015672655',
     projectId: 'read-libros',
+    databaseURL: 'https://read-libros-default-rtdb.firebaseio.com',
     storageBucket: 'read-libros.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB2JgCgj6QA08CwYC_ybA1AxJbdzgWwPfw',
     appId: '1:816015672655:ios:09e651061fd05d7a3f713a',
     messagingSenderId: '816015672655',
     projectId: 'read-libros',
+    databaseURL: 'https://read-libros-default-rtdb.firebaseio.com',
     storageBucket: 'read-libros.firebasestorage.app',
+    iosClientId: '816015672655-8n3v9djq4cfo77msjhn49oeg7u4uo5rs.apps.googleusercontent.com',
     iosBundleId: 'com.example.miApp',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyB2JgCgj6QA08CwYC_ybA1AxJbdzgWwPfw',
     appId: '1:816015672655:ios:09e651061fd05d7a3f713a',
     messagingSenderId: '816015672655',
     projectId: 'read-libros',
+    databaseURL: 'https://read-libros-default-rtdb.firebaseio.com',
     storageBucket: 'read-libros.firebasestorage.app',
+    iosClientId: '816015672655-8n3v9djq4cfo77msjhn49oeg7u4uo5rs.apps.googleusercontent.com',
     iosBundleId: 'com.example.miApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAm0tjcr_p2CUL18cgMjGom1wkV3fADBAc',
+    apiKey: 'AIzaSyCi-CbdkFZlmqP1oOp9wDc5_g0IqRE1Z_8',
     appId: '1:816015672655:web:371b55284033a3b63f713a',
     messagingSenderId: '816015672655',
     projectId: 'read-libros',
     authDomain: 'read-libros.firebaseapp.com',
+    databaseURL: 'https://read-libros-default-rtdb.firebaseio.com',
     storageBucket: 'read-libros.firebasestorage.app',
     measurementId: 'G-6S2SG795BF',
   );
